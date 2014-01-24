@@ -1,0 +1,18 @@
+{
+  "root": true,
+  "extends": "airbnb-base",
+  "rules": {
+    "indent": ["error", 2],
+    "max-len": ["error", 120, {
+      "ignoreStrings": true
+    }],
+    "no-unused-expressions": ["error", {
+      "allowShortCircuit": true
+    }],
+    "func-names": ["error", "as-needed"],
+    "no-param-reassign": ["error", {
+      "props": false
+    }],
+    "no-cond-assign": ["error", "except-parens"]
+  }
+}

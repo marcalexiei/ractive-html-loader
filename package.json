@@ -1,0 +1,41 @@
+{
+  "name": "ractive-html-loader",
+  "version": "0.1.1",
+  "author": "Marco Pasqualetti @marcalexiei",
+  "description": "Ractive HTML loader module for Webpack",
+  "license": "MIT",
+  "main": "index.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "lint": "eslint index.js",
+    "lint:fix": "eslint index.js --fix",
+    "lint:test": "eslint lib test",
+    "lint:test:fix": "eslint lib test --fix",
+    "pretest": "npm run lint",
+    "test": "mocha --harmony --full-trace --check-leaks",
+    "cover": "istanbul cover -x *.runtime.js node_modules/mocha/bin/_mocha",
+    "release": "standard-version"
+  },
+  "dependencies": {
+    "fastparse": "^1.1.2",
+    "html-minifier": "^3.5.21",
+    "loader-utils": "^1.1.0",
+    "object-assign": "^4.1.1",
+    "ractive": "^1.0.0"
+  },
+  "devDependencies": {
+    "codecov.io": "^0.1.6",
+    "eslint": "^5.9.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^5.2.0",
+    "should": "^13.2.3",
+    "standard-version": "^4.3.0"
+  },
+  "homepage": "https://github.com/marcalexiei/ractive-html-loader",
+  "repository": "https://github.com/marcalexiei/ractive-html-loader.git",
+  "bugs": "https://github.com/marcalexiei/ractive-html-loader/issues"
+}
