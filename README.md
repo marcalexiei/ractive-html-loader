@@ -11,4 +11,5 @@ This loader handles HTML file includeding external resources and generates [Ract
 
 ## TODO
 
-- write some tests
+- manage interpolate & test
+- manage minifization & test
