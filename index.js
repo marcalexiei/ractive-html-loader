@@ -133,21 +133,12 @@ module.exports = function ractiveHTMLLoader(content) {
   }
   */
 
-  /*
-  if (config.interpolate && config.interpolate !== 'require') {
-    // Double escape quotes so that they are not unescaped completely in the template string
-    contentOutput = contentOutput.replace(/\\"/g, "\\\\\"");
-    contentOutput = contentOutput.replace(/\\'/g, "\\\\\'");
-    contentOutput = compile('`' + contentOutput + '`').code;
-  }
-  */
-
   /**
   * @param {Object} obj
   *
   * @see https: //gist.github.com/cowboy/3749767
   */
-  const stringifyJSONWithFunctions = function (obj) {
+  const stringifyJSONWithFunctions = function (obj, space = null) {
     const placeholder = '____PLACEHOLDER____';
     const functions = [];
     let json = JSON.stringify(obj, (key, value) => {
@@ -156,13 +147,13 @@ module.exports = function ractiveHTMLLoader(content) {
         return placeholder;
       }
       return value;
-    }, 2);
+    }, space);
     json = json.replace(new RegExp(`"${placeholder}"`, 'g'), () => functions.shift());
     return json;
   };
 
   const ractiveTemplate = Ractive.parse(contentOutput, config.parserOptions);
-  contentOutput = stringifyJSONWithFunctions(ractiveTemplate);
+  contentOutput = stringifyJSONWithFunctions(ractiveTemplate, config.templateSpace);
 
   const contentWithResources = contentOutput.replace(/xxxHTMLLINKxxx[0-9.]+xxx/g, (match) => {
     if (!data[match]) return match;
@@ -178,11 +169,11 @@ module.exports = function ractiveHTMLLoader(content) {
     return `" + require(${JSON.stringify(urlToRequest)}) + "`;
   });
 
-  let exportsString = 'module.exports = ';
+  let exportsString = 'module.exports =';
   if (config.exportAsDefault) {
-    exportsString = 'exports.default = ';
+    exportsString = 'exports.default =';
   } else if (config.exportAsEs6Default) {
-    exportsString = 'export default ';
+    exportsString = 'export default';
   }
 
   return `${exportsString} ${contentWithResources}`;
