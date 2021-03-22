@@ -1,10 +1,10 @@
+/* eslint-disable */
 /**
  * MIT License http://www.opensource.org/licenses/mit-license.php
  */
 // const htmlMinifier = require("html-minifier");
 const loaderUtils = require('loader-utils');
 const url = require('url');
-const assign = require('object-assign');
 const Ractive = require('ractive');
 const attrParse = require('./lib/attributesParser');
 
@@ -12,24 +12,12 @@ function randomIdent() {
   return `xxxHTMLLINKxxx${Math.random()}${Math.random()}xxx`;
 }
 
-function getLoaderConfig(context) {
-  const query = loaderUtils.getOptions(context) || {};
-  const configKey = query.config || 'htmlLoader';
-  const config = context.options && Object.prototype.hasOwnProperty.call(context.options, configKey)
-    ? context.options[configKey]
-    : {};
-
-  delete query.config;
-
-  return assign(query, config);
-}
-
 module.exports = function ractiveHTMLLoader(content) {
   this.cacheable && this.cacheable();
 
   let contentOutput = content;
 
-  const config = getLoaderConfig(this);
+  const config = this.getOptions();
 
   let attributes = ['img:src'];
   if (config.attrs !== undefined) {
