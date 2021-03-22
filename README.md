@@ -11,5 +11,11 @@ This loader handles HTML file includeding external resources and generates [Ract
 
 ## TODO
 
-- manage interpolate & test
-- manage minifization & test
+- add commitlint
+- update eslint
+- implement build
+- implement publish
+
+## TODO - FUTURE
+
+- improve attribute handling

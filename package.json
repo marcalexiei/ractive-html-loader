@@ -9,10 +9,8 @@
     "node": "12.14.0"
   },
   "scripts": {
-    "lint": "eslint src/**/*.js",
-    "lint:fix": "eslint src/**/*.js --fix",
-    "lint:test": "eslint test",
-    "lint:test:fix": "eslint test --fix",
+    "lint": "eslint src test",
+    "lint:fix": "eslint src test --fix",
     "pretest": "npm run lint",
     "test": "jest",
     "cover": "istanbul cover -x *.runtime.js node_modules/mocha/bin/_mocha",

@@ -80,9 +80,11 @@ export default function parse(source, options) {
   contentOutput.reverse();
   contentOutput = contentOutput.join('');
 
-  let ractiveTemplate = Ractive.parse(contentOutput, options.parserOptions);
+  let ractiveTemplate = Ractive.parse(contentOutput, options.parseOptions);
 
+  // Inline function. Needed for parserOptions.csp
   ractiveTemplate = stringifyFunctions(ractiveTemplate);
+
   ractiveTemplate = ractiveTemplate.replace(/xxxHTMLLINKxxx[0-9.]+xxx/g, (match) => {
     if (!data[match]) return match;
 
