@@ -1,6 +1,18 @@
 {
   "type": "object",
   "properties": {
+    "esModule": {
+      "type": "boolean"
+    },
+    "root": {
+      "type": "string"
+    },
+    "attrs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
     "parseOptions": {
       "type": "object",
       "description": "Ractive.parse options. See https://ractive.js.org/api/#ractiveparse",

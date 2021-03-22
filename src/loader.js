@@ -1,13 +1,14 @@
-import Ractive from 'ractive';
-
+import parse from './lib/parse';
+import { getOutputExportCode, normalizeOptions } from './utils';
 import schema from './options.schema.json';
 
 export default function loader(source) {
   this.cacheable && this.cacheable();
 
-  const options = this.getOptions(schema);
+  const rawOptions = this.getOptions(schema);
+  const options = normalizeOptions(rawOptions);
 
-  const parsedTemplate = Ractive.parse(source, options.parserOptions);
+  const parsedTemplate = parse(source, options);
 
-  return `export default ${JSON.stringify(parsedTemplate)}`;
+  return `${getOutputExportCode(options.esModule)} ${parsedTemplate}`;
 }

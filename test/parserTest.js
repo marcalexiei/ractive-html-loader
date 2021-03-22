@@ -1,6 +1,6 @@
 require('should');
 
-const attrParse = require('../lib/attributesParser');
+const attrParse = require('../src/lib/attributesParser');
 
 function test(name, html, result) {
   it(`should parse ${name}`, () => {
