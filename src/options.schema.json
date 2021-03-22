@@ -1,0 +1,97 @@
+{
+  "type": "object",
+  "properties": {
+    "parseOptions": {
+      "type": "object",
+      "description": "Ractive.parse options. See https://ractive.js.org/api/#ractiveparse",
+      "additionalProperties": false,
+      "properties": {
+        "contextLines": {
+          "type": "number"
+        },
+
+        "csp": {
+          "type": "boolean"
+        },
+
+        "delimiters": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 2,
+          "maxItems": 2
+        },
+
+        "preserveWhitespace": {
+          "type": "boolean"
+        },
+
+        "sanitize": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "elements": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "eventAttributes": {
+                  "type": "boolean"
+                }
+              },
+              "additionalProperties": false
+            }
+          ]
+        },
+
+        "staticDelimiters": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 2,
+            "maxItems": 2
+        },
+
+        "staticTripleDelimiters": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 2,
+            "maxItems": 2
+        },
+
+        "stripComments": {
+          "type": "boolean"
+        },
+
+        "tripleDelimiters": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 2,
+            "maxItems": 2
+        },
+
+        "attributes": {
+          "type": "boolean"
+        },
+
+        "textOnlyMode": {
+          "type": "boolean"
+        },
+
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
