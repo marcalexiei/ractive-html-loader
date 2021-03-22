@@ -10,6 +10,7 @@ export function getOutputExportCode(esModule) {
 
 export function normalizeOptions(rawOptions) {
   return {
+    ...rawOptions,
     esModule: typeof rawOptions.esModule === 'undefined' ? true : rawOptions.esModule,
   };
 }

@@ -2,6 +2,11 @@ import path from 'path';
 import webpack from 'webpack';
 import { createFsFromVolume, Volume } from 'memfs';
 
+/**
+ * @param {string} fixture
+ * @param {Object} options loader options
+ * @returns {Promise<webpack.Stats>}
+ */
 export default (fixture, options = {}) => {
   const compiler = webpack({
     context: __dirname,
