@@ -11,8 +11,8 @@
   "scripts": {
     "lint": "eslint src/**/*.js",
     "lint:fix": "eslint src/**/*.js --fix",
-    "lint:test": "eslint lib test",
-    "lint:test:fix": "eslint lib test --fix",
+    "lint:test": "eslint test",
+    "lint:test:fix": "eslint test --fix",
     "pretest": "npm run lint",
     "test": "jest",
     "cover": "istanbul cover -x *.runtime.js node_modules/mocha/bin/_mocha",

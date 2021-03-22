@@ -1,16 +1,19 @@
-require('should');
-
+/**
+ * @jest-environment node
+ */
 const attrParse = require('../src/lib/attributesParser');
 
 function test(name, html, result) {
   it(`should parse ${name}`, () => {
-    attrParse(html, (tag, attr) => {
+    const r = attrParse(html, (tag, attr) => {
       if (tag === 'img' && attr === 'src') return true;
       if (tag === 'link' && attr === 'href') return true;
       if (tag === 'div' && attr === 'data-videomp4') return true;
       if (tag === 'use' && attr === 'xlink:href') return true;
       return false;
-    }).map(match => match.value).should.be.eql(result);
+    }).map(match => match.value);
+
+    expect(r).toEqual(result);
   });
 }
 
@@ -36,10 +39,13 @@ describe('parser', () => {
 
 describe('locations', () => {
   it('should report correct locations', () => {
-    attrParse('<img  src= "image.png">', () => true).should.be.eql([{
-      start: 12,
-      length: 9,
-      value: 'image.png',
-    }]);
+    const r = attrParse('<img  src= "image.png">', () => true);
+    expect(r).toEqual([
+      {
+        start: 12,
+        length: 9,
+        value: 'image.png',
+      },
+    ]);
   });
 });
