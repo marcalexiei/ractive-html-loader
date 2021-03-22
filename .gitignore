@@ -4,3 +4,6 @@ coverage
 *.sw*
 
 npm-debug.log
+
+.DS_STORE
+
