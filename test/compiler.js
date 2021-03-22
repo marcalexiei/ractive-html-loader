@@ -14,10 +14,20 @@ export default (fixture, options = {}) => {
       rules: [
         {
           test: /\.rhtml$/,
-          use: {
-            loader: path.resolve(__dirname, '../src/loader.js'),
-            options,
-          },
+          use: [
+            {
+              loader: path.resolve(__dirname, '../src/loader.js'),
+              options,
+            },
+          ],
+        },
+
+        /**
+         * @see https://webpack.js.org/guides/asset-modules/
+         */
+        {
+          test: /.(gif|jpg|jpeg|png|woff(2)?|eot|ttf|svg)(\?[a-z0-9=\.]+)?$/, // eslint-disable-line no-useless-escape
+          type: 'asset',
         },
       ],
     },

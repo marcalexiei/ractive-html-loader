@@ -1,0 +1,15 @@
+/**
+ *
+ * @param {boolean} esModule
+ */
+export function getOutputExportCode(esModule) {
+  if (esModule) return 'export default';
+
+  return 'module.exports =';
+}
+
+export function normalizeOptions(rawOptions) {
+  return {
+    esModule: typeof rawOptions.esModule === 'undefined' ? true : rawOptions.esModule,
+  };
+}
