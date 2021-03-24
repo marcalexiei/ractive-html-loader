@@ -9,12 +9,12 @@
     "node": "12.14.0"
   },
   "scripts": {
+    "prepare": "husky install",
     "lint": "eslint src test",
     "lint:fix": "eslint src test --fix",
     "pretest": "npm run lint",
     "test": "jest",
-    "cover": "istanbul cover -x *.runtime.js node_modules/mocha/bin/_mocha",
-    "release": "standard-version"
+    "cover": "istanbul cover -x *.runtime.js node_modules/mocha/bin/_mocha"
   },
   "dependencies": {
     "fastparse": "^1.1.2",
@@ -26,11 +26,14 @@
   "devDependencies": {
     "@babel/core": "^7.13.10",
     "@babel/preset-env": "^7.13.10",
+    "@commitlint/cli": "^12.0.1",
+    "@commitlint/config-conventional": "^12.0.1",
     "babel-jest": "^26.6.3",
     "codecov.io": "^0.1.6",
     "eslint": "^5.9.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
+    "husky": "^5.2.0",
     "istanbul": "^0.4.5",
     "jest": "^26.6.3",
     "memfs": "^3.2.0",
