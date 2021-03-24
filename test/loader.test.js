@@ -67,8 +67,29 @@ describe('sources handling', () => {
     expect(output).toBe('export default {"v":4,"t":["Text ",{"t":7,"e":"img","m":[{"n":"src","f":"" + require("./image-local.png") + "","t":13,"g":1}]}," Text"]}');
   });
 
-  test('should accept attrs from query (space separated)', async () => {
+  test('should accept attrs (space separated)', async () => {
     const stats = await compiler('./fixtures/image-and-script.rhtml', { attrs: 'script:src img:src' });
+    const output = stats.toJson({ source: true }).modules[0].source;
+
+    expect(output).toBe('export default {"v":4,"t":["Text ",{"t":7,"e":"script","m":[{"n":"src","f":"" + require("./assets/script.js") + "","t":13,"g":1}]}," ",{"t":7,"e":"img","m":[{"n":"src","f":"" + require("./image-local.png") + "","t":13,"g":1}]}]}');
+  });
+
+  test('should accept attrs (array)', async () => {
+    const stats = await compiler('./fixtures/image-and-script.rhtml', { attrs: ['script:src', 'img:src'] });
+    const output = stats.toJson({ source: true }).modules[0].source;
+
+    expect(output).toBe('export default {"v":4,"t":["Text ",{"t":7,"e":"script","m":[{"n":"src","f":"" + require("./assets/script.js") + "","t":13,"g":1}]}," ",{"t":7,"e":"img","m":[{"n":"src","f":"" + require("./image-local.png") + "","t":13,"g":1}]}]}');
+  });
+
+  test('should not process nothing if `attrs` is `false`', async () => {
+    const stats = await compiler('./fixtures/image-and-script.rhtml', { attrs: false });
+    const output = stats.toJson({ source: true }).modules[0].source;
+
+    expect(output).toBe('export default {"v":4,"t":["Text ",{"t":7,"e":"script","m":[{"n":"src","f":"./assets/script.js","t":13,"g":1}]}," ",{"t":7,"e":"img","m":[{"n":"src","f":"image-local.png","t":13,"g":1}]}]}');
+  });
+
+  test('should process all tag when specify only one attribute', async () => {
+    const stats = await compiler('./fixtures/image-and-script.rhtml', { attrs: ':src' });
     const output = stats.toJson({ source: true }).modules[0].source;
 
     expect(output).toBe('export default {"v":4,"t":["Text ",{"t":7,"e":"script","m":[{"n":"src","f":"" + require("./assets/script.js") + "","t":13,"g":1}]}," ",{"t":7,"e":"img","m":[{"n":"src","f":"" + require("./image-local.png") + "","t":13,"g":1}]}]}');

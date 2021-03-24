@@ -3,7 +3,7 @@
  */
 import compiler from './compiler';
 
-describe('Validate options', () => {
+describe('must throw with invalid options', () => {
   [
     {
       title: 'should break with unknown properties as config',
@@ -12,6 +12,10 @@ describe('Validate options', () => {
     {
       title: 'should break with unknown properties inside `parseOptions`',
       options: { parseOptions: { foo: 'bar' } },
+    },
+    {
+      title: 'should break with invalid `attrs`',
+      options: { attrs: { foo: 'bar' } },
     },
   ].forEach(({ title, options }) => {
     test(title, async () => {

@@ -37,7 +37,7 @@ export default function parse(source, options) {
     if (typeof options.attrs === 'string') attributes = options.attrs.split(' ');
     else if (Array.isArray(options.attrs)) attributes = options.attrs;
     else if (options.attrs === false) attributes = [];
-    else throw new Error('Invalid value to config parameter attrs');
+    // Error handled by schema
   }
   const { root } = options;
   const links = attrParse(contentOutput, (tag, attr) => {
