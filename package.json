@@ -4,26 +4,33 @@
   "author": "Marco Pasqualetti @marcalexiei",
   "description": "Ractive HTML loader module for Webpack",
   "license": "MIT",
-  "main": "index.js",
+  "main": "dist/loader.js",
   "engines": {
-    "node": "12.14.0"
+    "node": ">= 12.14.0"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "prepare": "husky install",
     "lint": "eslint src test",
     "lint:fix": "eslint src test --fix",
     "pretest": "npm run lint",
     "test": "jest",
-    "cover": "jest --coverage"
+    "cover": "jest --coverage",
+    "build": "NODE_ENV=production babel src --out-dir dist --copy-files"
   },
   "dependencies": {
     "fastparse": "^1.1.2",
-    "loader-utils": "^1.1.0"
+    "loader-utils": "^1.1.0",
+    "schema-utils": "^3.0.0"
   },
   "peerDependencies": {
-    "ractive": "1.x"
+    "ractive": "1.x",
+    "webpack": "5.x"
   },
   "devDependencies": {
+    "@babel/cli": "^7.13.10",
     "@babel/core": "^7.13.10",
     "@babel/preset-env": "^7.13.10",
     "@commitlint/cli": "^12.0.1",
