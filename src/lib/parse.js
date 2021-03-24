@@ -1,6 +1,5 @@
 import Ractive from 'ractive';
 import url from 'url';
-
 import loaderUtils from 'loader-utils';
 
 import attrParse from './attributesParser';
