@@ -14,10 +14,11 @@
   "scripts": {
     "prepare": "husky install",
     "lint": "eslint src test",
-    "lint:fix": "eslint src test --fix",
+    "lint:fix": "npm run lint -- --fix",
     "pretest": "npm run lint",
     "test": "jest",
-    "cover": "jest --coverage",
+    "test:watch": "npm run test -- --watch",
+    "cover": "npm run test -- --coverage",
     "build": "NODE_ENV=production babel src --out-dir dist --copy-files"
   },
   "dependencies": {
