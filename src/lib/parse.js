@@ -28,16 +28,23 @@ export function stringifyFunctions(source, space = null) {
   return json;
 }
 
+/**
+ * @typedef InternalParseOptions
+ * @type {Object}
+ * @property {string[]} attrs
+ * @property {import('ractive').ParseOpts} parseOptions
+ */
+
+/**
+ * @param {string} source
+ * @param {InternalParseOptions} options
+ *
+ * @returns {string}
+ */
 export default function parse(source, options) {
   let contentOutput = source;
 
-  let attributes = ['img:src'];
-  if (options.attrs !== undefined) {
-    if (typeof options.attrs === 'string') attributes = options.attrs.split(' ');
-    else if (Array.isArray(options.attrs)) attributes = options.attrs;
-    else if (options.attrs === false) attributes = [];
-    // Error handled by schema
-  }
+  const attributes = options.attrs;
   const { root } = options;
   const links = attrParse(contentOutput, (tag, attr) => {
     const res = attributes.find((a) => {
