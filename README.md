@@ -11,7 +11,6 @@ This loader handles HTML file includeding external resources and generates [Ract
 
 ## TODO
 
-- update eslint
 - implement build
 - implement publish
 

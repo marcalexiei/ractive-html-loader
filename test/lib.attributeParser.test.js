@@ -11,7 +11,7 @@ function test(name, html, result) {
       if (tag === 'div' && attr === 'data-videomp4') return true;
       if (tag === 'use' && attr === 'xlink:href') return true;
       return false;
-    }).map(match => match.value);
+    }).map((match) => match.value);
 
     expect(r).toEqual(result);
   });

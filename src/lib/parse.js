@@ -5,7 +5,6 @@ import loaderUtils from 'loader-utils';
 
 import attrParse from './attributesParser';
 
-
 function randomIdent() {
   return `xxxHTMLLINKxxx${Math.random()}${Math.random()}xxx`;
 }
