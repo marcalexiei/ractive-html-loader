@@ -5,6 +5,12 @@
   "description": "Ractive HTML loader module for Webpack",
   "license": "MIT",
   "main": "dist/loader.js",
+  "keywords": [
+    "webpack",
+    "ractive",
+    "html",
+    "loader"
+  ],
   "engines": {
     "node": ">= 12.14.0"
   },
