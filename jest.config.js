@@ -1,7 +1,7 @@
 module.exports = {
   testEnvironment: 'node',
 
-  collectCoverageFrom: ['src/**/*.{js,jsx}'],
+  collectCoverageFrom: ['src/**/*.js'],
   coverageReporters: ['text', 'json', 'html'],
   coverageDirectory: './coverage',
 };
