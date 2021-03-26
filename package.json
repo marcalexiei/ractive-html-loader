@@ -19,12 +19,14 @@
   ],
   "scripts": {
     "prepare": "husky install",
+    "clean": "del-cli dist",
     "lint": "eslint src test",
     "lint:fix": "npm run lint -- --fix",
     "pretest": "npm run lint",
     "test": "jest",
     "test:watch": "npm run test -- --watch",
     "cover": "npm run test -- --coverage",
+    "prebuild": "npm run clean",
     "build": "NODE_ENV=production babel src --out-dir dist --copy-files",
     "release": "npm run test && npm run build && standard-version"
   },
@@ -44,6 +46,7 @@
     "@commitlint/cli": "^12.0.1",
     "@commitlint/config-conventional": "^12.0.1",
     "babel-jest": "^26.6.3",
+    "del-cli": "^3.0.1",
     "eslint": "^7.22.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
