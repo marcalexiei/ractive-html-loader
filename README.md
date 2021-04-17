@@ -9,22 +9,20 @@ This loader parse Ractive templates [Ractive](https://github.com/ractivejs/racti
 Install the package:
 
 ```bash
-npm install --save-dev html-loader
+npm install --save-dev ractive-html-loader
 ```
 
 Then add the loader to your webpack config.
 For example:
 
 ```javascript
-import html from './file.html';
-webpack.config.js
-
+// webpack.config.js
 module.exports = {
   module: {
     rules: [
       {
         test: /\.rhtml$/i,
-        loader: 'html-loader',
+        loader: 'ractive-html-loader',
         options: {
           /* ... */
         }
@@ -45,7 +43,7 @@ const Cmp = Ractive.extend({
 
 class Cmp extends Ractive { /* ... */ }
 
-Ractive.extendWith({
+Ractive.extendWith(Cmp, {
   template,
 });
 ```
