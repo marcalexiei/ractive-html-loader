@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.3](https://github.com/marcalexiei/ractive-html-loader/compare/v0.0.1...v0.0.3) (2021-04-17)
+
+
+### Bug Fixes
+
+* add missing keyword on package
+* fix readme package name and examples
+
 ### 0.0.1 (2021-03-25)
 
 
