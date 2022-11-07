@@ -1,4 +1,3 @@
-import loaderUtils from 'loader-utils';
 import { validate } from 'schema-utils';
 
 import parse from './lib/parse';
@@ -10,9 +9,8 @@ export default function loader(source) {
 
   // this.getOptions not exposed why loader is used together with thread-loader
   // @see https://github.com/webpack-contrib/thread-loader/issues/106
-  // const rawOptions = this.getOptions(schema);
+  const rawOptions = this.getOptions(schema);
 
-  const rawOptions = loaderUtils.getOptions(this);
   validate(schema, rawOptions);
 
   const options = normalizeOptions(rawOptions);
