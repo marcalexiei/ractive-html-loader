@@ -9,7 +9,6 @@ module.exports = {
         'chore',
         'ci',
         'docs',
-        'deps',
         'feat',
         'fix',
         'perf',
