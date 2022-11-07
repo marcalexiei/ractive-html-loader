@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.4](https://github.com/marcalexiei/ractive-html-loader/compare/v0.0.1...v0.0.4) (2022-11-07)
+
+
+### Bug Fixes
+
+* use getOptions from loader context ([47784e6](https://github.com/marcalexiei/ractive-html-loader/commit/47784e6aa6673dcc77331c5dd560472557df85ca))
+
 ### [0.0.3](https://github.com/marcalexiei/ractive-html-loader/compare/v0.0.1...v0.0.3) (2021-04-17)
 
 
