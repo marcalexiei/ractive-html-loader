@@ -34,7 +34,7 @@
   "dependencies": {
     "fastparse": "^1.1.2",
     "loader-utils": "^2.0.3",
-    "schema-utils": "^3.0.0"
+    "schema-utils": "^4.0.0"
   },
   "peerDependencies": {
     "ractive": "1.x",
