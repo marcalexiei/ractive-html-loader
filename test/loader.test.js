@@ -118,12 +118,21 @@ describe('sources handling', () => {
     expect(output).toBe('export default {"v":4,"t":["Text ",{"t":7,"e":"img","m":[{"n":"src","f":"" + require("./assets/image.png") + "","t":13,"g":1}]}," Text"]}');
   });
 
-  test('should handle braces with computation', async () => {
+  test('should handle braces with a computation', async () => {
     const stats = await compiler('./fixtures/image-with-computed-src.rhtml', {
       root: './assets',
     });
     const output = stats.toJson({ source: true }).modules[0].source;
 
     expect(output).toBe('export default {"v":4,"t":[{"t":7,"e":"img","m":[{"n":"src","f":[{"t":2,"r":"computed"}],"t":13}]}]}');
+  });
+
+  test('should handle braces with a partual computation', async () => {
+    const stats = await compiler('./fixtures/image-with-partial-computed-src.rhtml', {
+      root: './assets',
+    });
+    const output = stats.toJson({ source: true }).modules[0].source;
+
+    expect(output).toBe('export default {"v":4,"t":[{"t":7,"e":"img","m":[{"n":"src","f":["/image-",{"t":2,"r":"partialComputation"},".png"],"t":13}]}]}');
   });
 });
