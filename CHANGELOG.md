@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.5](https://github.com/marcalexiei/ractive-html-loader/compare/v0.0.4...v0.0.5) (2022-11-07)
+
+
+### Bug Fixes
+
+* downgrade loader-utils to avoid issue with interpolated src’s ([055786f](https://github.com/marcalexiei/ractive-html-loader/commit/055786f7762467ff50412b7c71ce0cc2f57c7397))
+
 ### [0.0.4](https://github.com/marcalexiei/ractive-html-loader/compare/v0.0.1...v0.0.4) (2022-11-07)
 
 
