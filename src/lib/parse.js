@@ -63,6 +63,29 @@ export default function parse(source, options) {
 
     if (link.value.includes('mailto:')) return;
 
+    /**
+     * Check if the string contains Ractive delimiters.
+     * If yes do not add them to webpack resolutions.
+     */
+    {
+      const {
+        delimiters = Ractive.defaults.delimiters,
+        tripleDelimiters = Ractive.defaults.tripleDelimiters,
+        staticDelimiters = Ractive.defaults.staticDelimiters,
+        staticTripleDelimiters = Ractive.defaults.tripleDelimiters,
+      } = options.parseOptions;
+
+      const ractiveInterpolations = [
+        delimiters,
+        tripleDelimiters,
+        staticDelimiters,
+        staticTripleDelimiters,
+      ];
+      if (ractiveInterpolations.some(
+        ([_open, _close]) => link.value.includes(_open) && link.value.includes(_close),
+      )) return;
+    }
+
     const uri = url.parse(link.value);
     if (uri.hash !== null && uri.hash !== undefined) {
       uri.hash = null;

@@ -18,6 +18,7 @@ export function normalizeOptions(rawOptions) {
   return {
     ...rawOptions,
     attrs,
+    parseOptions: typeof rawOptions.parseOptions === 'object' ? rawOptions.parseOptions : {},
     esModule: typeof rawOptions.esModule === 'boolean' ? rawOptions.esModule : true,
   };
 }
