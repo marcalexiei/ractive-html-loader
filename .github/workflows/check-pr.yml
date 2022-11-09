@@ -1,0 +1,39 @@
+on:
+  pull_request:
+    branches:
+      - main
+
+env:
+  CI: true
+
+name: Check PR
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: true
+      matrix:
+        script: [lint, test, build]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - run: npm install
+
+      - name: Lint
+        if: matrix.script == 'lint'
+        run: npm run lint
+
+      - name: Build
+        if: matrix.script == 'build'
+        run: npm run build
+
+      - name: Test
+        if: matrix.script == 'test'
+        run: npm run test
