@@ -55,7 +55,6 @@
     "jest": "^29.2.2",
     "memfs": "^3.4.10",
     "ractive": "1.4.1",
-    "standard-version": "^9.5.0",
     "webpack": "^5.74.0"
   },
   "homepage": "https://github.com/marcalexiei/ractive-html-loader",

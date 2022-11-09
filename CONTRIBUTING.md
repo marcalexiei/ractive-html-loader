@@ -22,8 +22,4 @@ npm run test:watch
 
 ##  Release
 
-```bash
-npm run release
-```
-
-Follow instructions
+Github handles release using Google™ release please action
