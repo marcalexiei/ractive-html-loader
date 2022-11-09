@@ -1,6 +1,6 @@
 {
   "name": "ractive-html-loader",
-  "version": "0.0.5",
+  "version": "1.0.0",
   "author": "Marco Pasqualetti @marcalexiei",
   "description": "Ractive HTML loader module for Webpack",
   "license": "MIT",
