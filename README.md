@@ -92,3 +92,4 @@ Default: `true`
 ## TODO - FUTURE
 
 - improve attribute handling
+- handle es module on resources
