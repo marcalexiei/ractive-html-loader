@@ -20,6 +20,14 @@ To work and check you changes:
 npm run test:watch
 ```
 
+## Documentation
+
+```bash
+cd docs
+npm i
+npm run docs:dev
+```
+
 ##  Release
 
 Github handles release using Google™ release please action
