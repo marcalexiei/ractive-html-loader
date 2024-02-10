@@ -4,7 +4,9 @@
   "author": "Marco Pasqualetti @marcalexiei",
   "description": "Ractive HTML loader module for Webpack",
   "license": "MIT",
+  "type": "module",
   "main": "dist/loader.js",
+  "exports": "./dist/loader.js",
   "keywords": [
     "webpack",
     "ractive",
@@ -12,8 +14,7 @@
     "loader"
   ],
   "engines": {
-    "node": ">= 16.13.1",
-    "npm": ">= 8.1.0"
+    "node": ">= 18"
   },
   "files": [
     "dist"
@@ -23,8 +24,7 @@
     "clean": "del-cli dist",
     "lint": "eslint src test",
     "lint:fix": "npm run lint -- --fix",
-    "pretest": "npm run lint",
-    "test": "jest",
+    "test": "NODE_OPTIONS=\"$NODE_OPTIONS --experimental-vm-modules\" jest",
     "test:watch": "npm run test -- --watch",
     "cover": "npm run test -- --coverage",
     "prebuild": "npm run clean",

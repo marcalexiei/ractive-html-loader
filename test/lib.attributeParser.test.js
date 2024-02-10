@@ -1,7 +1,7 @@
 /**
  * @jest-environment node
  */
-const attrParse = require('../src/lib/attributesParser');
+import attrParse from '../src/lib/attributesParser';
 
 function test(name, html, result) {
   it(`should parse ${name}`, () => {
