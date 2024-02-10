@@ -8,6 +8,12 @@ function randomIdent() {
   return `xxxHTMLLINKxxx${Math.random()}${Math.random()}xxx`;
 }
 
+function getOutputExportCode(esModule) {
+  if (esModule) return 'export default';
+
+  return 'module.exports =';
+}
+
 /**
  * @param {Object} obj
  * @param {number?} space
@@ -32,6 +38,7 @@ export function stringifyFunctions(source, space = null) {
  * @typedef InternalParseOptions
  * @type {Object}
  * @property {string[]} attrs
+ * @property {boolean} esModule
  * @property {import('ractive').ParseOpts} parseOptions
  */
 
@@ -108,17 +115,38 @@ export default function parse(source, options) {
   contentOutput.reverse();
   contentOutput = contentOutput.join('');
 
-  let ractiveTemplate = Ractive.parse(contentOutput, options.parseOptions);
+  const ractiveTemplate = Ractive.parse(contentOutput, options.parseOptions);
 
   // Inline function. Needed for parserOptions.csp
-  ractiveTemplate = stringifyFunctions(ractiveTemplate);
+  const ractiveTemplateString = stringifyFunctions(ractiveTemplate);
 
-  ractiveTemplate = ractiveTemplate.replace(/xxxHTMLLINKxxx[0-9.]+xxx/g, (match) => {
+  const imports = [];
+  let template = '';
+  let resourceCount = 0;
+
+  template = ractiveTemplateString.replace(/xxxHTMLLINKxxx[0-9.]+xxx/g, (match) => {
     if (!data[match]) return match;
 
     const urlToRequest = loaderUtils.urlToRequest(data[match], root);
-    return `" + require(${JSON.stringify(urlToRequest)}) + "`;
+
+    const resourceName = `res${resourceCount}`;
+    resourceCount += 1;
+
+    if (options.esModule) {
+      imports.push(`import ${resourceName} from ${JSON.stringify(urlToRequest)};`);
+    } else {
+      imports.push(`const ${resourceName} = require(${JSON.stringify(urlToRequest)});`);
+    }
+
+    return `" + ${resourceName} + "`;
   });
 
-  return ractiveTemplate;
+  let result = '';
+  if (imports.length) {
+    result += `${imports.join('\n')}\n\n`;
+  }
+
+  result += `${getOutputExportCode(options.esModule)} ${template};`;
+
+  return result;
 }

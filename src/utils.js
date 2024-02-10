@@ -1,12 +1,4 @@
-/**
- *  @param {boolean} esModule
- */
-export function getOutputExportCode(esModule) {
-  if (esModule) return 'export default';
-
-  return 'module.exports =';
-}
-
+// eslint-disable-next-line import/prefer-default-export
 export function normalizeOptions(rawOptions) {
   let attrs = ['img:src'];
   if (rawOptions.attrs !== undefined) {

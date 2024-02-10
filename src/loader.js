@@ -1,7 +1,7 @@
 import { validate } from 'schema-utils';
 
 import parse from './lib/parse';
-import { getOutputExportCode, normalizeOptions } from './utils';
+import { normalizeOptions } from './utils';
 import schema from './options.schema.json';
 
 export default function loader(source) {
@@ -17,5 +17,5 @@ export default function loader(source) {
 
   const parsedTemplate = parse(source, options);
 
-  return `${getOutputExportCode(options.esModule)} ${parsedTemplate}`;
+  return parsedTemplate;
 }
