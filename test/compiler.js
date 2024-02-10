@@ -1,6 +1,9 @@
-import path from 'path';
+import path from 'node:path';
 import webpack from 'webpack';
 import { createFsFromVolume, Volume } from 'memfs';
+import { fileURLToPath } from 'node:url';
+
+const dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /**
  * @param {string} fixture
@@ -9,10 +12,10 @@ import { createFsFromVolume, Volume } from 'memfs';
  */
 export default (fixture, options = {}) => {
   const compiler = webpack({
-    context: __dirname,
+    context: dirname,
     entry: `./${fixture}`,
     output: {
-      path: path.resolve(__dirname),
+      path: path.resolve(dirname),
       filename: 'bundle.js',
     },
     module: {
@@ -21,7 +24,7 @@ export default (fixture, options = {}) => {
           test: /\.rhtml$/,
           use: [
             {
-              loader: path.resolve(__dirname, '../src/loader.js'),
+              loader: path.resolve(dirname, '../src/loader.js'),
               options,
             },
           ],

@@ -3,7 +3,7 @@
  * MIT License http: //www.opensource.org/licenses/mit-license.php
  * Author Tobias Koppers @sokra
  */
-const Parser = require('fastparse');
+import Parser from 'fastparse';
 
 const processMatch = function (match, strUntilValue, name, value, index) {
   if (!this.isRelevantTagAttr(this.currentTag, name)) return;
@@ -34,10 +34,10 @@ const parser = new Parser({
   },
 });
 
-module.exports = function parse(html, isRelevantTagAttr) {
+export default function parse(html, isRelevantTagAttr) {
   return parser.parse('outside', html, {
     currentTag: null,
     results: [],
     isRelevantTagAttr,
   }).results;
-};
+}
