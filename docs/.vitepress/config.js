@@ -4,6 +4,9 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: "Ractive HTML loader",
   description: "Loader module for Webpack",
+
+  base: '/ractive-html-loader/',
+
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
