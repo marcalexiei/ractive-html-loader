@@ -35,16 +35,8 @@ export function stringifyFunctions(source, space = null) {
 }
 
 /**
- * @typedef InternalParseOptions
- * @type {Object}
- * @property {string[]} attrs
- * @property {boolean} esModule
- * @property {import('ractive').ParseOpts} parseOptions
- */
-
-/**
  * @param {string} source
- * @param {InternalParseOptions} options
+ * @param {import('../loader').InternalParseOptions} options
  *
  * @returns {string}
  */

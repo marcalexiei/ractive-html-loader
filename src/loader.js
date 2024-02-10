@@ -1,8 +1,45 @@
 import { validate } from 'schema-utils';
 
 import parse from './lib/parse';
-import { normalizeOptions } from './utils';
 import schema from './options.schema.json';
+
+/**
+ * @typedef RawOptions
+ * @type {Object}
+ * @property {?string[] | string} attrs
+ * @property {?string} root
+ * @property {?boolean} esModule
+ * @property {import('ractive').ParseOpts} parseOptions
+ */
+
+/**
+ * @typedef InternalParseOptions
+ * @type {Object}
+ * @property {string[]} attrs
+ * @property {boolean} esModule
+ * @property {import('ractive').ParseOpts} parseOptions
+ */
+
+/**
+ *
+ * @param {RawOptions} rawOptions
+ * @returns {InternalParseOptions}
+ */
+function normalizeOptions(rawOptions) {
+  let attrs = ['img:src'];
+  if (rawOptions.attrs !== undefined) {
+    if (typeof rawOptions.attrs === 'string') attrs = rawOptions.attrs.split(' ');
+    else if (Array.isArray(rawOptions.attrs)) attrs = rawOptions.attrs;
+    else if (rawOptions.attrs === false) attrs = [];
+  }
+
+  return {
+    ...rawOptions,
+    attrs,
+    parseOptions: typeof rawOptions.parseOptions === 'object' ? rawOptions.parseOptions : {},
+    esModule: typeof rawOptions.esModule === 'boolean' ? rawOptions.esModule : true,
+  };
+}
 
 export default function loader(source) {
   this.cacheable && this.cacheable();
