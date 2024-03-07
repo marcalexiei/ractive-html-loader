@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.0.0](https://github.com/marcalexiei/ractive-html-loader/compare/v1.0.0...v2.0.0) (2024-03-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* migrate to ESM
+
+### Features
+
+* improve resource management to use ESM ([b0307ae](https://github.com/marcalexiei/ractive-html-loader/commit/b0307aecf878453f2def3d01097ad613b77e90c2))
+* migrate to ESM ([89d7927](https://github.com/marcalexiei/ractive-html-loader/commit/89d79270da716583409cd674b3e82e1dc889473a))
+
 ## [1.0.0](https://github.com/marcalexiei/ractive-html-loader/compare/v0.0.5...v1.0.0) (2022-11-09)
 
 
