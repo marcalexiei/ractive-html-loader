@@ -1,4 +1,9 @@
+name: CI
+
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches:
       - main
@@ -26,14 +31,7 @@ jobs:
 
       - run: npm install
 
-      - name: Lint
+      - name: Run ${{ matrix.script }}
         if: matrix.script == 'lint'
-        run: npm run lint
+        run: npm run ${{ matrix.script }}
 
-      - name: Build
-        if: matrix.script == 'build'
-        run: npm run build
-
-      - name: Test
-        if: matrix.script == 'test'
-        run: npm run test
