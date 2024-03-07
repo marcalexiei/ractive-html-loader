@@ -1,6 +1,7 @@
 # Ractive HTML loader
 
 [![CI](https://github.com/marcalexiei/ractive-html-loader/actions/workflows/CI.yml/badge.svg)](https://github.com/marcalexiei/ractive-html-loader/actions/workflows/CI.yml)
+[![npm version](https://img.shields.io/npm/v/ractive-html-loader.svg?style=flat-square)](https://www.npmjs.com/package/ractive-html-loader)
 
 Based on [webpack-html-loader](https://github.com/webpack-contrib/html-loader).
 
