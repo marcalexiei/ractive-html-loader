@@ -1,4 +1,9 @@
+name: CI
+
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches:
       - main
@@ -6,7 +11,6 @@ on:
 env:
   CI: true
 
-name: Check PR
 jobs:
   check:
     runs-on: ubuntu-latest
@@ -26,14 +30,6 @@ jobs:
 
       - run: npm install
 
-      - name: Lint
-        if: matrix.script == 'lint'
-        run: npm run lint
+      - name: Run ${{ matrix.script }}
+        run: npm run ${{ matrix.script }}
 
-      - name: Build
-        if: matrix.script == 'build'
-        run: npm run build
-
-      - name: Test
-        if: matrix.script == 'test'
-        run: npm run test
