@@ -20,6 +20,6 @@
   },
   "homepage": "https://github.com/marcalexiei/ractive-html-loader#readme",
   "devDependencies": {
-    "vitepress": "1.0.1"
+    "vitepress": "1.2.3"
   }
 }
