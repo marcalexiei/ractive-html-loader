@@ -18,9 +18,19 @@ function test(name, html, result) {
 }
 
 describe('parser', () => {
-  test('normal', 'Text <img src="image.png"><img src="image2.png">', ['image.png', 'image2.png']);
-  test('single-quotes', "Text <img src='image.png'><img src='image2.png'>", ['image.png', 'image2.png']);
-  test('whitespace', 'T ex t  <img \t  src =   "image.png"   >  <img\t\nsrc\n=\n"image2.png"\n>', ['image.png', 'image2.png']);
+  test('normal', 'Text <img src="image.png"><img src="image2.png">', [
+    'image.png',
+    'image2.png',
+  ]);
+  test('single-quotes', "Text <img src='image.png'><img src='image2.png'>", [
+    'image.png',
+    'image2.png',
+  ]);
+  test(
+    'whitespace',
+    'T ex t  <img \t  src =   "image.png"   >  <img\t\nsrc\n=\n"image2.png"\n>',
+    ['image.png', 'image2.png'],
+  );
   test('whitespace2', 'Text < img src="image.png" >', []);
   test('wrong <', 'Text <<img src="image.png">', ['image.png']);
   test('wrong >', 'Text ><img src="image.png">', ['image.png']);
@@ -30,8 +40,14 @@ describe('parser', () => {
   test('comment2', '<!--<!--<img src="image.png">-->', []);
   test('comment3', '<!--><img src="image.png">-->', []);
   test('comment4', '<!----><img src="image.png">-->', ['image.png']);
-  test('tags', '<img src="image.png"><script src="script.js"></script><link type="stylesheet" href="style.css">', ['image.png', 'style.css']);
-  test('cdata', '<![CDATA[<img src="image.png">]]><img src="image2.png">', ['image2.png']);
+  test(
+    'tags',
+    '<img src="image.png"><script src="script.js"></script><link type="stylesheet" href="style.css">',
+    ['image.png', 'style.css'],
+  );
+  test('cdata', '<![CDATA[<img src="image.png">]]><img src="image2.png">', [
+    'image2.png',
+  ]);
   test('doctype', '<!doctype html><img src="image.png">', ['image.png']);
   test('alphanumeric', '<div data-videomp4="video.mp4"></div>', ['video.mp4']);
   test('use', '<use xlink:href="vector.svg" />', ['vector.svg']);

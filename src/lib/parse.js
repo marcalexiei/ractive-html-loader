@@ -23,14 +23,20 @@ function getOutputExportCode(esModule) {
 export function stringifyFunctions(source, space = null) {
   const placeholder = '____PLACEHOLDER____';
   const functions = [];
-  let json = JSON.stringify(source, (key, value) => {
-    if (typeof value === 'function') {
-      functions.push(value);
-      return placeholder;
-    }
-    return value;
-  }, space);
-  json = json.replace(new RegExp(`"${placeholder}"`, 'g'), () => functions.shift());
+  let json = JSON.stringify(
+    source,
+    (key, value) => {
+      if (typeof value === 'function') {
+        functions.push(value);
+        return placeholder;
+      }
+      return value;
+    },
+    space,
+  );
+  json = json.replace(new RegExp(`"${placeholder}"`, 'g'), () =>
+    functions.shift(),
+  );
   return json;
 }
 
@@ -50,7 +56,7 @@ export default function parse(source, options) {
       if (a.charAt(0) === ':') {
         return attr === a.slice(1);
       }
-      return (`${tag}:${attr}`) === a;
+      return `${tag}:${attr}` === a;
     });
     return !!res;
   });
@@ -80,9 +86,13 @@ export default function parse(source, options) {
         staticDelimiters,
         staticTripleDelimiters,
       ];
-      if (ractiveInterpolations.some(
-        ([_open, _close]) => link.value.includes(_open) && link.value.includes(_close),
-      )) return;
+      if (
+        ractiveInterpolations.some(
+          ([_open, _close]) =>
+            link.value.includes(_open) && link.value.includes(_close),
+        )
+      )
+        return;
     }
 
     const uri = url.parse(link.value);
@@ -116,22 +126,29 @@ export default function parse(source, options) {
   let template = '';
   let resourceCount = 0;
 
-  template = ractiveTemplateString.replace(/xxxHTMLLINKxxx[0-9.]+xxx/g, (match) => {
-    if (!data[match]) return match;
+  template = ractiveTemplateString.replace(
+    /xxxHTMLLINKxxx[0-9.]+xxx/g,
+    (match) => {
+      if (!data[match]) return match;
 
-    const urlToRequest = loaderUtils.urlToRequest(data[match], root);
+      const urlToRequest = loaderUtils.urlToRequest(data[match], root);
 
-    const resourceName = `res${resourceCount}`;
-    resourceCount += 1;
+      const resourceName = `res${resourceCount}`;
+      resourceCount += 1;
 
-    if (options.esModule) {
-      imports.push(`import ${resourceName} from ${JSON.stringify(urlToRequest)};`);
-    } else {
-      imports.push(`const ${resourceName} = require(${JSON.stringify(urlToRequest)});`);
-    }
+      if (options.esModule) {
+        imports.push(
+          `import ${resourceName} from ${JSON.stringify(urlToRequest)};`,
+        );
+      } else {
+        imports.push(
+          `const ${resourceName} = require(${JSON.stringify(urlToRequest)});`,
+        );
+      }
 
-    return `" + ${resourceName} + "`;
-  });
+      return `" + ${resourceName} + "`;
+    },
+  );
 
   let result = '';
   if (imports.length) {

@@ -28,7 +28,8 @@ import schema from './options.schema.json';
 function normalizeOptions(rawOptions) {
   let attrs = ['img:src'];
   if (rawOptions.attrs !== undefined) {
-    if (typeof rawOptions.attrs === 'string') attrs = rawOptions.attrs.split(' ');
+    if (typeof rawOptions.attrs === 'string')
+      attrs = rawOptions.attrs.split(' ');
     else if (Array.isArray(rawOptions.attrs)) attrs = rawOptions.attrs;
     else if (rawOptions.attrs === false) attrs = [];
   }
@@ -36,8 +37,12 @@ function normalizeOptions(rawOptions) {
   return {
     ...rawOptions,
     attrs,
-    parseOptions: typeof rawOptions.parseOptions === 'object' ? rawOptions.parseOptions : {},
-    esModule: typeof rawOptions.esModule === 'boolean' ? rawOptions.esModule : true,
+    parseOptions:
+      typeof rawOptions.parseOptions === 'object'
+        ? rawOptions.parseOptions
+        : {},
+    esModule:
+      typeof rawOptions.esModule === 'boolean' ? rawOptions.esModule : true,
   };
 }
 

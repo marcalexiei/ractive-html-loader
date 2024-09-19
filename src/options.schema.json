@@ -73,21 +73,21 @@
         },
 
         "staticDelimiters": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "minItems": 2,
-            "maxItems": 2
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 2,
+          "maxItems": 2
         },
 
         "staticTripleDelimiters": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "minItems": 2,
-            "maxItems": 2
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 2,
+          "maxItems": 2
         },
 
         "stripComments": {
@@ -95,12 +95,12 @@
         },
 
         "tripleDelimiters": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "minItems": 2,
-            "maxItems": 2
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 2,
+          "maxItems": 2
         },
 
         "attributes": {

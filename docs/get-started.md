@@ -38,7 +38,7 @@ module.exports = {
         loader: 'ractive-html-loader',
         options: {
           /* ... */
-        }
+        },
       },
     ],
   },
@@ -57,7 +57,9 @@ const Cmp = Ractive.extend({
   template,
 });
 
-class Cmp extends Ractive { /* ... */ }
+class Cmp extends Ractive {
+  /* ... */
+}
 
 Ractive.extendWith(Cmp, {
   template,

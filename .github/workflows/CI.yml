@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        script: [lint, test, build]
+        script: [lint, test, build, format]
 
     steps:
       - uses: actions/checkout@v4
@@ -32,4 +32,3 @@ jobs:
 
       - name: Run ${{ matrix.script }}
         run: npm run ${{ matrix.script }}
-

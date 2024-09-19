@@ -1,17 +1,12 @@
 {
   "root": true,
-  "ignorePatterns": [
-    "dist/**"
-  ],
-  "extends": "airbnb-base",
+  "ignorePatterns": ["dist/**"],
+  "extends": ["airbnb-base", "prettier"],
   "parserOptions": {
     "ecmaVersion": 2020
   },
   "rules": {
-    "indent": [
-      "error",
-      2
-    ],
+    "indent": ["error", 2],
     "max-len": [
       "error",
       120,
@@ -25,19 +20,13 @@
         "allowShortCircuit": true
       }
     ],
-    "func-names": [
-      "error",
-      "as-needed"
-    ],
+    "func-names": ["error", "as-needed"],
     "no-param-reassign": [
       "error",
       {
         "props": false
       }
     ],
-    "no-cond-assign": [
-      "error",
-      "except-parens"
-    ]
+    "no-cond-assign": ["error", "except-parens"]
   }
 }

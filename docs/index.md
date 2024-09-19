@@ -3,8 +3,8 @@
 layout: home
 
 hero:
-  name: "Ractive HTML loader"
-  text: "Loader module for Webpack"
+  name: 'Ractive HTML loader'
+  text: 'Loader module for Webpack'
   tagline: Based on webpack-html-loader
   actions:
     - theme: brand
@@ -20,4 +20,3 @@ features:
   - title: Fully compatible with Ractive.js parse
     details: Check the configuration for additional information
 ---
-
