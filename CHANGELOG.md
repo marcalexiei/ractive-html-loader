@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.0.0](https://github.com/marcalexiei/ractive-html-loader/compare/v1.0.0...v2.0.0) (2024-10-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* migrate to ESM
+
+### Features
+
+* add npm badge ([#37](https://github.com/marcalexiei/ractive-html-loader/issues/37)) ([bf3b944](https://github.com/marcalexiei/ractive-html-loader/commit/bf3b9444cdd3e38ca895a631b9c7ed3077f1972e))
+* improve resource management to use ESM ([b0307ae](https://github.com/marcalexiei/ractive-html-loader/commit/b0307aecf878453f2def3d01097ad613b77e90c2))
+* migrate to ESM ([89d7927](https://github.com/marcalexiei/ractive-html-loader/commit/89d79270da716583409cd674b3e82e1dc889473a))
+
 ## [1.0.0](https://github.com/marcalexiei/ractive-html-loader/compare/v0.0.5...v1.0.0) (2022-11-09)
 
 
