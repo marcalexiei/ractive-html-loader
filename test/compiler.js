@@ -1,13 +1,15 @@
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
 import webpack from 'webpack';
 import { createFsFromVolume, Volume } from 'memfs';
-import { fileURLToPath } from 'node:url';
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /**
  * @param {string} fixture
- * @param {Object} options loader options
+ * @param {import('../src/loader').RawOptions} options loader options
+ *
  * @returns {Promise<webpack.Stats>}
  */
 export default (fixture, options = {}) => {
@@ -34,7 +36,7 @@ export default (fixture, options = {}) => {
          * @see https://webpack.js.org/guides/asset-modules/
          */
         {
-          test: /.(gif|jpg|jpeg|png|woff(2)?|eot|ttf|svg)(\?[a-z0-9=\.]+)?$/, // eslint-disable-line no-useless-escape
+          test: /.(?:gif|jpg|jpeg|png|woff(?:2)?|eot|ttf|svg)(?:\?[a-z0-9=.]+)?$/,
           type: 'asset',
         },
       ],
@@ -46,8 +48,12 @@ export default (fixture, options = {}) => {
 
   return new Promise((resolve, reject) => {
     compiler.run((err, stats) => {
-      if (err) reject(err);
-      if (stats.hasErrors()) reject(stats.toJson().errors);
+      if (err) {
+        reject(err);
+      }
+      if (stats.hasErrors()) {
+        reject(stats.toJson().errors);
+      }
 
       resolve(stats);
     });

@@ -28,10 +28,13 @@ import schema from './options.schema.json';
 function normalizeOptions(rawOptions) {
   let attrs = ['img:src'];
   if (rawOptions.attrs !== undefined) {
-    if (typeof rawOptions.attrs === 'string')
+    if (typeof rawOptions.attrs === 'string') {
       attrs = rawOptions.attrs.split(' ');
-    else if (Array.isArray(rawOptions.attrs)) attrs = rawOptions.attrs;
-    else if (rawOptions.attrs === false) attrs = [];
+    } else if (Array.isArray(rawOptions.attrs)) {
+      attrs = rawOptions.attrs;
+    } else if (rawOptions.attrs === false) {
+      attrs = [];
+    }
   }
 
   return {
@@ -46,7 +49,14 @@ function normalizeOptions(rawOptions) {
   };
 }
 
+/**
+ *
+ * @param {*} source
+ *
+ * @this {import('webpack').LoaderRunnerLoaderContext}
+ */
 export default function loader(source) {
+  // eslint-disable-next-line no-unused-expressions
   this.cacheable && this.cacheable();
 
   // this.getOptions not exposed why loader is used together with thread-loader

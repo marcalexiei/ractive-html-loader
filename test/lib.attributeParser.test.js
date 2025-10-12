@@ -1,15 +1,23 @@
-/**
- * @jest-environment node
- */
+import { describe, it, expect } from '@jest/globals';
+
 import attrParse from '../src/lib/attributesParser';
 
 function test(name, html, result) {
   it(`should parse ${name}`, () => {
     const r = attrParse(html, (tag, attr) => {
-      if (tag === 'img' && attr === 'src') return true;
-      if (tag === 'link' && attr === 'href') return true;
-      if (tag === 'div' && attr === 'data-videomp4') return true;
-      if (tag === 'use' && attr === 'xlink:href') return true;
+      if (tag === 'img' && attr === 'src') {
+        return true;
+      }
+      if (tag === 'link' && attr === 'href') {
+        return true;
+      }
+      if (tag === 'div' && attr === 'data-videomp4') {
+        return true;
+      }
+      if (tag === 'use' && attr === 'xlink:href') {
+        return true;
+      }
+
       return false;
     }).map((match) => match.value);
 

@@ -1,10 +1,11 @@
-/* eslint-disable max-len */
+import { describe, test, expect } from '@jest/globals';
+
 import compiler from './compiler';
 
 describe('text content', () => {
   test('should properly generate template for text-content', async () => {
     const stats = await compiler('./fixtures/only-text.rhtml');
-    const output = stats.toJson({ source: true }).modules[0];
+    const [output] = stats.toJson({ source: true }).modules;
 
     expect(output.source).toMatchInlineSnapshot(
       '"export default {"v":4,"t":["only text!"]};"',
@@ -19,7 +20,7 @@ describe('`csp` option', () => {
         csp: false,
       },
     });
-    const output = stats.toJson({ source: true }).modules[0];
+    const [output] = stats.toJson({ source: true }).modules;
 
     expect(output.source).toMatchInlineSnapshot(
       '"export default {"v":4,"t":[{"t":7,"e":"div","f":[{"t":2,"x":{"r":["test"],"s":"_0+1"}}]}]};"',
@@ -32,7 +33,7 @@ describe('`csp` option', () => {
         csp: true,
       },
     });
-    const output = stats.toJson({ source: true }).modules[0];
+    const [output] = stats.toJson({ source: true }).modules;
 
     expect(output.source).toMatchInlineSnapshot(
       '"export default {"v":4,"t":[{"t":7,"e":"div","f":[{"t":2,"x":{"r":["test"],"s":"_0+1"}}]}],"e":{"_0+1":function (_0){return(_0+1);}}};"',
@@ -45,7 +46,7 @@ describe('esModule', () => {
     const stats = await compiler('./fixtures/only-text.rhtml', {
       esModule: false,
     });
-    const output = stats.toJson({ source: true }).modules[0];
+    const [output] = stats.toJson({ source: true }).modules;
 
     expect(output.source).toMatchInlineSnapshot(
       '"module.exports = {"v":4,"t":["only text!"]};"',
@@ -56,7 +57,7 @@ describe('esModule', () => {
     const stats = await compiler('./fixtures/only-text.rhtml', {
       esModule: true,
     });
-    const output = stats.toJson({ source: true }).modules[0];
+    const [output] = stats.toJson({ source: true }).modules;
 
     expect(output.source).toMatchInlineSnapshot(
       '"export default {"v":4,"t":["only text!"]};"',
@@ -65,7 +66,7 @@ describe('esModule', () => {
 
   test('should return `export default` when `esModule` is not set', async () => {
     const stats = await compiler('./fixtures/only-text.rhtml');
-    const output = stats.toJson({ source: true }).modules[0];
+    const [output] = stats.toJson({ source: true }).modules;
 
     expect(output.source).toMatchInlineSnapshot(
       '"export default {"v":4,"t":["only text!"]};"',
@@ -76,7 +77,7 @@ describe('esModule', () => {
 describe('sources handling', () => {
   test('should properly generate template when image tag with src is present', async () => {
     const stats = await compiler('./fixtures/image.rhtml');
-    const output = stats.toJson({ source: true }).modules[0].modules[0];
+    const [output] = stats.toJson({ source: true }).modules[0].modules;
 
     expect(output.source).toMatchInlineSnapshot(`
 "import res0 from "./image-local.png";
@@ -89,7 +90,7 @@ export default {"v":4,"t":["Text ",{"t":7,"e":"img","m":[{"n":"src","f":"" + res
     const stats = await compiler('./fixtures/image-and-script.rhtml', {
       attrs: 'script:src img:src',
     });
-    const output = stats.toJson({ source: true }).modules[0].modules[0];
+    const [output] = stats.toJson({ source: true }).modules[0].modules;
 
     expect(output.source).toMatchInlineSnapshot(`
 "import res0 from "./assets/script.js";
@@ -103,7 +104,7 @@ export default {"v":4,"t":["Text ",{"t":7,"e":"script","m":[{"n":"src","f":"" + 
     const stats = await compiler('./fixtures/image-and-script.rhtml', {
       attrs: ['script:src', 'img:src'],
     });
-    const output = stats.toJson({ source: true }).modules[0].modules[0];
+    const [output] = stats.toJson({ source: true }).modules[0].modules;
 
     expect(output.source).toMatchInlineSnapshot(`
 "import res0 from "./assets/script.js";
@@ -117,7 +118,7 @@ export default {"v":4,"t":["Text ",{"t":7,"e":"script","m":[{"n":"src","f":"" + 
     const stats = await compiler('./fixtures/image-and-script.rhtml', {
       attrs: false,
     });
-    const output = stats.toJson({ source: true }).modules[0];
+    const [output] = stats.toJson({ source: true }).modules;
 
     expect(output.source).toMatchInlineSnapshot(
       '"export default {"v":4,"t":["Text ",{"t":7,"e":"script","m":[{"n":"src","f":"./assets/script.js","t":13,"g":1}]}," ",{"t":7,"e":"img","m":[{"n":"src","f":"image-local.png","t":13,"g":1}]}]};"',
@@ -128,7 +129,7 @@ export default {"v":4,"t":["Text ",{"t":7,"e":"script","m":[{"n":"src","f":"" + 
     const stats = await compiler('./fixtures/image-and-script.rhtml', {
       attrs: ':src',
     });
-    const output = stats.toJson({ source: true }).modules[0].modules[0];
+    const [output] = stats.toJson({ source: true }).modules[0].modules;
 
     expect(output.source).toMatchInlineSnapshot(`
 "import res0 from "./assets/script.js";
@@ -142,7 +143,7 @@ export default {"v":4,"t":["Text ",{"t":7,"e":"script","m":[{"n":"src","f":"" + 
     const stats = await compiler('./fixtures/image-with-hash.rhtml', {
       esModule: true,
     });
-    const output = stats.toJson({ source: true }).modules[0].modules[0];
+    const [output] = stats.toJson({ source: true }).modules[0].modules;
 
     expect(output.source).toMatchInlineSnapshot(`
 "import res0 from "./image-local.png";
@@ -153,7 +154,7 @@ export default {"v":4,"t":[{"t":7,"e":"img","m":[{"n":"src","f":"" + res0 + "#ha
 
   test("should ignore anchor with 'mailto:' in the href attribute", async () => {
     const stats = await compiler('./fixtures/link-mail-to.rhtml');
-    const output = stats.toJson({ source: true }).modules[0];
+    const [output] = stats.toJson({ source: true }).modules;
 
     expect(output.source).toMatchInlineSnapshot(
       '"export default {"v":4,"t":[{"t":7,"e":"a","m":[{"n":"href","f":"mailto:username@exampledomain.com","t":13,"g":1}],"f":["Mail to"]}]};"',
@@ -164,7 +165,7 @@ export default {"v":4,"t":[{"t":7,"e":"img","m":[{"n":"src","f":"" + res0 + "#ha
     const stats = await compiler('./fixtures/image-root.rhtml', {
       root: './assets',
     });
-    const output = stats.toJson({ source: true }).modules[0].modules[0];
+    const [output] = stats.toJson({ source: true }).modules[0].modules;
 
     expect(output.source).toMatchInlineSnapshot(`
 "import res0 from "./assets/image.png";
@@ -177,7 +178,7 @@ export default {"v":4,"t":["Text ",{"t":7,"e":"img","m":[{"n":"src","f":"" + res
     const stats = await compiler('./fixtures/image-with-computed-src.rhtml', {
       root: './assets',
     });
-    const output = stats.toJson({ source: true }).modules[0];
+    const [output] = stats.toJson({ source: true }).modules;
 
     expect(output.source).toMatchInlineSnapshot(
       '"export default {"v":4,"t":[{"t":7,"e":"img","m":[{"n":"src","f":[{"t":2,"r":"computed"}],"t":13}]}]};"',
@@ -191,7 +192,7 @@ export default {"v":4,"t":["Text ",{"t":7,"e":"img","m":[{"n":"src","f":"" + res
         root: './assets',
       },
     );
-    const output = stats.toJson({ source: true }).modules[0];
+    const [output] = stats.toJson({ source: true }).modules;
 
     expect(output.source).toMatchInlineSnapshot(
       '"export default {"v":4,"t":[{"t":7,"e":"img","m":[{"n":"src","f":["/image-",{"t":2,"r":"partialComputation"},".png"],"t":13}]}]};"',

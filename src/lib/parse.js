@@ -1,5 +1,6 @@
-import Ractive from 'ractive';
 import url from 'url';
+
+import Ractive from 'ractive';
 import loaderUtils from 'loader-utils';
 
 import attrParse from './attributesParser';
@@ -9,7 +10,9 @@ function randomIdent() {
 }
 
 function getOutputExportCode(esModule) {
-  if (esModule) return 'export default';
+  if (esModule) {
+    return 'export default';
+  }
 
   return 'module.exports =';
 }
@@ -64,9 +67,13 @@ export default function parse(source, options) {
   const data = {};
   contentOutput = [contentOutput];
   links.forEach((link) => {
-    if (!loaderUtils.isUrlRequest(link.value, root)) return;
+    if (!loaderUtils.isUrlRequest(link.value, root)) {
+      return;
+    }
 
-    if (link.value.includes('mailto:')) return;
+    if (link.value.includes('mailto:')) {
+      return;
+    }
 
     /**
      * Check if the string contains Ractive delimiters.
@@ -91,8 +98,9 @@ export default function parse(source, options) {
           ([_open, _close]) =>
             link.value.includes(_open) && link.value.includes(_close),
         )
-      )
+      ) {
         return;
+      }
     }
 
     const uri = url.parse(link.value);
@@ -123,13 +131,14 @@ export default function parse(source, options) {
   const ractiveTemplateString = stringifyFunctions(ractiveTemplate);
 
   const imports = [];
-  let template = '';
   let resourceCount = 0;
 
-  template = ractiveTemplateString.replace(
+  const template = ractiveTemplateString.replace(
     /xxxHTMLLINKxxx[0-9.]+xxx/g,
     (match) => {
-      if (!data[match]) return match;
+      if (!data[match]) {
+        return match;
+      }
 
       const urlToRequest = loaderUtils.urlToRequest(data[match], root);
 

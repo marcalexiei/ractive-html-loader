@@ -1,18 +1,26 @@
-/* eslint-disable no-useless-escape */
 /**
  * MIT License http: //www.opensource.org/licenses/mit-license.php
  * Author Tobias Koppers @sokra
  */
 import Parser from 'fastparse';
 
-const processMatch = function (match, strUntilValue, name, value, index) {
-  if (!this.isRelevantTagAttr(this.currentTag, name)) return;
+/**
+ *
+ * @this {Parser}
+ * @returns {void}
+ */
+// eslint-disable-next-line max-params
+function processMatch(match, strUntilValue, name, value, index) {
+  if (!this.isRelevantTagAttr(this.currentTag, name)) {
+    return;
+  }
+
   this.results.push({
     start: index + strUntilValue.length,
     length: value.length,
     value,
   });
-};
+}
 
 const parser = new Parser({
   outside: {

@@ -1,2 +1,2 @@
-// eslint-disable-next-line no-console
-console.info('hello');
+const pippo = 1 + 1;
+Number(pippo);
