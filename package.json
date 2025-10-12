@@ -11,7 +11,7 @@
   },
   "main": "dist/loader.js",
   "exports": "./dist/loader.js",
-  "homepage": "https://github.com/marcalexiei/ractive-html-loader",
+  "homepage": "https://marcalexiei.github.io/ractive-html-loader/",
   "bugs": {
     "url": "https://github.com/marcalexiei/ractive-html-loader/issues"
   },
