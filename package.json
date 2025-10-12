@@ -1,24 +1,35 @@
 {
   "name": "ractive-html-loader",
   "version": "1.0.0",
-  "author": "Marco Pasqualetti @marcalexiei",
   "description": "Ractive HTML loader module for Webpack",
-  "license": "MIT",
   "type": "module",
+  "engines": {
+    "node": ">= 18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "dist/loader.js",
   "exports": "./dist/loader.js",
+  "homepage": "https://github.com/marcalexiei/ractive-html-loader",
+  "bugs": {
+    "url": "https://github.com/marcalexiei/ractive-html-loader/issues"
+  },
   "keywords": [
     "webpack",
     "ractive",
     "html",
     "loader"
   ],
-  "engines": {
-    "node": ">= 18"
-  },
   "files": [
     "dist"
   ],
+  "author": "Marco Pasqualetti @marcalexiei",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marcalexiei/ractive-html-loader"
+  },
   "scripts": {
     "prepare": "husky || true",
     "clean": "del-cli dist",
@@ -30,8 +41,10 @@
     "test:watch": "npm run test -- --watch",
     "cover": "npm run test -- --coverage",
     "prebuild": "npm run clean",
-    "build": "NODE_ENV=production babel src --out-dir dist --copy-files"
+    "build": "NODE_ENV=production babel src --out-dir dist --copy-files",
+    "check-all": "npm run format && npm run lint && npm run test"
   },
+  "packageManager": "npm@11.6.2+sha512.ee22b335fcbc95662cdf3ab8a053daf045d9cf9c6df6040d28965abb707512b2c16fa6c5eec049d34c74f78f390cebd14f697919eadb97756564d4f9eccc4954",
   "dependencies": {
     "fastparse": "^1.1.2",
     "loader-utils": "^3.2.0",
@@ -59,8 +72,5 @@
     "prettier": "^3.3.3",
     "ractive": "1.4.4",
     "webpack": "5.94.0"
-  },
-  "homepage": "https://github.com/marcalexiei/ractive-html-loader",
-  "repository": "https://github.com/marcalexiei/ractive-html-loader.git",
-  "bugs": "https://github.com/marcalexiei/ractive-html-loader/issues"
+  }
 }
