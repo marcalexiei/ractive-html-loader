@@ -45,6 +45,7 @@
     "check-all": "npm run format && npm run lint && npm run test"
   },
   "packageManager": "npm@11.6.2+sha512.ee22b335fcbc95662cdf3ab8a053daf045d9cf9c6df6040d28965abb707512b2c16fa6c5eec049d34c74f78f390cebd14f697919eadb97756564d4f9eccc4954",
+  "prettier": "@marcalexiei/prettier-config",
   "dependencies": {
     "fastparse": "^1.1.2",
     "loader-utils": "^3.2.0",
@@ -60,6 +61,7 @@
     "@babel/preset-env": "7.25.4",
     "@commitlint/cli": "20.1.0",
     "@commitlint/config-conventional": "20.0.0",
+    "@marcalexiei/prettier-config": "1.1.4",
     "babel-jest": "29.7.0",
     "del-cli": "7.0.0",
     "eslint": "8.57.1",
@@ -69,7 +71,7 @@
     "husky": "9.1.6",
     "jest": "29.7.0",
     "memfs": "4.12.0",
-    "prettier": "^3.3.3",
+    "prettier": "3.6.2",
     "ractive": "1.4.4",
     "webpack": "5.94.0"
   }
