@@ -35,7 +35,7 @@
     "clean": "del-cli dist",
     "format": "prettier . --check",
     "format:fix": "prettier . --write",
-    "lint": "eslint src test",
+    "lint": "eslint",
     "lint:fix": "npm run lint -- --fix",
     "test": "NODE_OPTIONS=\"$NODE_OPTIONS --experimental-vm-modules\" jest",
     "test:watch": "npm run test -- --watch",
