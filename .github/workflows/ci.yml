@@ -12,13 +12,15 @@ on:
     branches:
       - main
 
-permissions:
-  contents: read
+permissions: {}
 
 jobs:
   test:
     name: Test Node ${{ matrix.node }}
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
 
     strategy:
       fail-fast: true
@@ -44,17 +46,12 @@ jobs:
       - name: Run test
         run: npm run test
 
-  check:
-    name: Code check (${{ matrix.script }})
+  code-checks:
+    name: Code checks
     runs-on: ubuntu-latest
 
-    strategy:
-      fail-fast: true
-      matrix:
-        script:
-          - lint
-          - format
-          - build
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout
@@ -63,8 +60,14 @@ jobs:
       - name: Install Dependencies
         uses: ./.github/actions/install-dependencies
 
-      - name: Run ${{ matrix.script }}
-        run: npm run ${{ matrix.script }}
+      - name: Run format
+        run: npm run format
+
+      - name: Run lint
+        run: npm run lint
+
+      - name: Run docs:build
+        run: npm run docs:build
 
   ci-ok:
     name: CI OK
@@ -72,7 +75,7 @@ jobs:
     if: always()
     needs:
       - test
-      - check
+      - code-checks
     steps:
       - name: Exit with error if some jobs are not successful
         run: exit 1
